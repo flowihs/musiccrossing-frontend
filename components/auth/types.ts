@@ -8,5 +8,6 @@ export interface InputConfig {
 
 export interface SocialNetwork {
     name: string;
-    path: string;
+    icon: React.ReactNode;
+    onClick: () => void;
 }

@@ -1,9 +1,4 @@
-import { AuthTab, InputConfig, SocialNetwork } from "./types";
-
-export const SOCIAL_NETWORKS: SocialNetwork[] = [
-    { name: "VK", path: "/Auth/vk" },
-    { name: "Discord", path: "/Auth/discord" }
-];
+import { AuthTab, InputConfig } from "./types";
 
 export const BUTTON_TEXTS: Record<AuthTab, string> = {
     login: "Войти",
@@ -13,7 +8,7 @@ export const BUTTON_TEXTS: Record<AuthTab, string> = {
 
 export const FORM_CONFIG: Record<AuthTab, InputConfig[]> = {
     login: [
-        { name: "identifier", placeholder: "Логин или email", type: "text" },
+        { name: "login", placeholder: "Логин или email", type: "text" },
         { name: "password", placeholder: "Пароль", type: "password" }
     ],
     register: [

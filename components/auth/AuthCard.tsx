@@ -3,7 +3,6 @@
 import { useState } from "react";
 import styles from "./auth.module.css";
 import { AuthTab } from "./types";
-
 import { BackButton } from "./BackButton";
 import { AuthTabs } from "./AuthTabs";
 import { AuthForm } from "./AuthForm";
@@ -17,17 +16,13 @@ export function AuthCard() {
             <div className={styles.cardBody}>
                 <h1 className={styles.title}>MusicShare</h1>
 
-                {
-                    activeTab === "resetPassword" && (
-                        <BackButton onClick={() => setActiveTab("login")} />
-                    )
-                }
+                {activeTab === "resetPassword" && (
+                    <BackButton onClick={() => setActiveTab("login")} />
+                )}
 
-                {
-                    (activeTab === "login" || activeTab === "register") && (
-                        <AuthTabs activeTab={activeTab} onTabChange={setActiveTab} />
-                    )
-                }
+                {(activeTab === "login" || activeTab === "register") && (
+                    <AuthTabs activeTab={activeTab} onTabChange={setActiveTab} />
+                )}
 
                 <AuthForm activeTab={activeTab} />
 
@@ -37,11 +32,11 @@ export function AuthCard() {
                             type="button"
                             className={styles.forgotPasswordLink}
                             onClick={() => setActiveTab("resetPassword")}
-                            style={{ background: 'none', border: 'none' }}
                         >
                             Забыли пароль?
                         </button>
-                        <SocialLogin />
+                        {/* Передаем activeTab для перерендера */}
+                        <SocialLogin activeTab={activeTab} />
                     </>
                 )}
             </div>
