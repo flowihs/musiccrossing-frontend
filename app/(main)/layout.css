@@ -1,0 +1,37 @@
+.main-shell {
+  padding: 0 24px;
+}
+
+.container-main {
+  display: flex;
+  gap: 24px;
+  max-width: 1880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.RootLayout {
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .main-shell {
+    padding: 0 16px;
+  }
+
+  .container-main {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-shell {
+    padding: 0 12px;
+  }
+}

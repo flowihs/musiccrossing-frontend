@@ -1,0 +1,408 @@
+/* ── Sidebar ── */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+  width: 100%;
+  max-height: calc(100dvh - 108px);
+  min-height: 0;
+  position: sticky;
+  top: 20px;
+}
+
+.navMenu {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  padding: 25px;
+  border-radius: 12px;
+  gap: 28px;
+}
+
+.navLink {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.navLink:hover {
+  color: var(--accent);
+}
+
+.navLinkActive {
+  color: var(--accent);
+}
+
+.navIcon {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.navLabel {
+  margin: 0;
+}
+
+.navIndicator {
+  display: none;
+  position: absolute;
+  left: -24px;
+  top: 0;
+  width: 2px;
+  height: 29px;
+  background: var(--accent);
+  border-radius: 1px;
+  box-shadow: 0 4px 40px 4px var(--accent);
+}
+
+.navIndicatorActive {
+  display: block;
+}
+
+/* ── Library block ── */
+
+.library {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  gap: 20px;
+  min-height: 0;
+  max-height: min(520px, calc(100dvh - 290px));
+  padding: 25px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+}
+
+.libraryTop {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.libraryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.libraryTitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.libraryAddBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.libraryAddBtn:hover {
+  color: var(--accent);
+  background: var(--accent-muted);
+  border-color: rgba(224, 112, 32, 0.35);
+}
+
+.libraryAddBtn:active {
+  transform: scale(0.94);
+}
+
+.libraryAddIcon {
+  flex-shrink: 0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search:focus-within {
+  border-color: rgba(224, 112, 32, 0.35);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  width: 100%;
+  transition: color 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.librarySearch {
+  height: 35px;
+  padding: 0 12px;
+  gap: 8px;
+  border-radius: 16px;
+}
+
+.librarySearchIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.librarySearchInput {
+  font-size: 13px;
+}
+
+.playlistList {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  gap: 4px;
+  margin: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 4px 0 0;
+  list-style: none;
+  scrollbar-color: rgba(224, 112, 32, 0.55) transparent;
+  scrollbar-width: thin;
+}
+
+.playlistList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playlistList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.playlistList::-webkit-scrollbar-thumb {
+  background: rgba(224, 112, 32, 0.45);
+  border-radius: 999px;
+}
+
+.playlistList::-webkit-scrollbar-thumb:hover {
+  background: rgba(224, 112, 32, 0.75);
+}
+
+.playlistItem {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.playlistItem:hover {
+  background: var(--bg-elevated);
+}
+
+.playlistCover {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.playlistInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.playlistName {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlistMeta {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 1440px) {
+  .sidebar {
+    max-width: 280px;
+  }
+
+  .navMenu {
+    padding: 20px;
+    gap: 24px;
+  }
+
+  .navLink {
+    font-size: 22px;
+    gap: 20px;
+  }
+
+  .navIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .library {
+    padding: 20px;
+  }
+
+  .libraryTitle {
+    font-size: 20px;
+  }
+
+  .playlistName {
+    font-size: 16px;
+  }
+
+  .playlistMeta {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .sidebar {
+    max-width: 260px;
+  }
+
+  .navMenu {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .navLink {
+    font-size: 20px;
+    gap: 16px;
+  }
+
+  .navIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .library {
+    padding: 16px;
+    gap: 16px;
+    max-height: min(460px, calc(100dvh - 252px));
+  }
+
+  .libraryTop {
+    gap: 12px;
+  }
+
+  .libraryTitle {
+    font-size: 18px;
+  }
+
+  .playlistCover {
+    width: 48px;
+    height: 48px;
+  }
+
+  .playlistName {
+    font-size: 15px;
+  }
+
+  .playlistMeta {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    max-width: 100%;
+    max-height: none;
+    position: static;
+  }
+
+  .navMenu,
+  .library {
+    padding: 20px;
+  }
+
+  .library {
+    max-height: min(420px, 60dvh);
+  }
+}
+
+@media (max-width: 480px) {
+  .navLink {
+    font-size: 20px;
+    gap: 16px;
+  }
+
+  .navIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .libraryTitle {
+    font-size: 20px;
+  }
+
+  .playlistName {
+    font-size: 16px;
+  }
+
+  .playlistMeta {
+    font-size: 13px;
+  }
+}
