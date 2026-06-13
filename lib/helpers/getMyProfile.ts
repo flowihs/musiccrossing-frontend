@@ -11,7 +11,6 @@ export interface UserProfile {
 export const userServices = {
   getMyProfile: async () => {
     const { data } = await api.get<UserProfile>("/user/my-profile");
-
     return data;
   },
 };

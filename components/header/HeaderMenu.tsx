@@ -6,15 +6,47 @@ import { LogOut, Settings, User } from "lucide-react";
 import styles from "@/components/header/header.module.css";
 import Image from "next/image";
 import avatar from "@/public/header/avatar.png";
+import { api } from "@/lib/axios";
+import { useRouter } from "next/navigation";
+
+interface UserProfile {
+    username: string;
+    email: string;
+}
 
 export default function HeaderMenu() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [user, setUser] = useState<UserProfile | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const avatarRef = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     const toggleMenu = useCallback(() => {
         setIsMenuOpen((prev) => !prev);
     }, []);
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            try {
+                const response = await api.get("/user/my-profile");
+                setUser(response.data);
+            } catch (error) {
+                console.log(error);
+                setUser(null);
+            }
+        };
+
+        fetchProfile();
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            await api.post("/auth/logout");
+            setUser(null);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -31,6 +63,19 @@ export default function HeaderMenu() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [isMenuOpen]);
 
+    if (!user) {
+        return (
+            <div className={styles.menu}>
+                <button
+                    className={styles.loginBtn}
+                    onClick={() => router.push("/auth")}
+                >
+                    Войти
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.menu}>
             <div
@@ -45,7 +90,7 @@ export default function HeaderMenu() {
                 <Image
                     className={styles.avatar}
                     src={avatar}
-                    alt="Профиль"
+                    alt={user.username}
                     width={42}
                     height={42}
                 />
@@ -54,8 +99,8 @@ export default function HeaderMenu() {
             {isMenuOpen && (
                 <div ref={menuRef} className={styles.profileMenu} role="menu">
                     <div className={styles.profileInfo}>
-                        <p className={styles.profileName}>Arseniy</p>
-                        <p className={styles.profileEmail}>sabianin123@gmail.com</p>
+                        <p className={styles.profileName}>{user.username}</p>
+                        <p className={styles.profileEmail}>{user.email}</p>
                     </div>
 
                     <div className={styles.menuDivider} />
@@ -69,7 +114,11 @@ export default function HeaderMenu() {
                             <Settings className={styles.menuItemIcon} size={18} strokeWidth={1.75} />
                             Настройки
                         </li>
-                        <li className={styles.logoutBtn} role="menuitem">
+                        <li
+                            className={styles.logoutBtn}
+                            role="menuitem"
+                            onClick={handleLogout}
+                        >
                             <LogOut className={styles.menuItemIcon} size={18} strokeWidth={1.75} />
                             Выйти
                         </li>
