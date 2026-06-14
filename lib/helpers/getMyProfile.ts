@@ -13,4 +13,7 @@ export const userServices = {
     const { data } = await api.get<UserProfile>("/user/my-profile");
     return data;
   },
+  logout: async () => {
+    return await api.post("/auth/logout");
+  }
 };

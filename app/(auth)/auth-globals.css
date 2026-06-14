@@ -1,6 +1,6 @@
-body {
-    margin: 0;
+.authPage {
     min-height: 100vh;
+    position: relative;
     background: #f9f9f9;
     font-family: Roboto, Inter, system-ui, sans-serif;
 }

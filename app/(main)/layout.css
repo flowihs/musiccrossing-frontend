@@ -1,5 +1,8 @@
 .main-shell {
+  min-height: 100vh;
   padding: 0 24px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .container-main {
