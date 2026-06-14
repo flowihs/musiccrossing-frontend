@@ -1,4 +1,4 @@
-import {AuthCard} from "@/components/auth/AuthCard";
+import AuthPageClient from "./page-client";
 
 export const metadata = {
     title: "Авторизация | MusicShare",
@@ -8,7 +8,7 @@ export const metadata = {
 export default function AuthPage() {
     return (
         <main className="authPage">
-            <AuthCard/>
+            <AuthPageClient />
         </main>
     );
 }

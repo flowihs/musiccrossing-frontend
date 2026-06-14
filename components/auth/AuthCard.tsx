@@ -8,8 +8,8 @@ import { AuthTabs } from "./AuthTabs";
 import { AuthForm } from "./AuthForm";
 import { SocialLogin } from "./SocialLogin";
 
-export function AuthCard() {
-    const [activeTab, setActiveTab] = useState<AuthTab>("login");
+export function AuthCard({initialTab = "login"}: {initialTab?: AuthTab}) {
+    const [activeTab, setActiveTab] = useState<AuthTab>(initialTab);
 
     return (
         <section className={styles.authCard}>
