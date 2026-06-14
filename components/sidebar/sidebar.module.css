@@ -206,7 +206,6 @@
   overflow-y: auto;
   overscroll-behavior: contain;
   overflow-x: hidden;
-  padding: 0 4px 0 0;
   list-style: none;
   scrollbar-color: rgba(224, 112, 32, 0.55) transparent;
   scrollbar-width: thin;
@@ -234,7 +233,7 @@
   align-items: center;
   gap: 13px;
   padding: 6px 8px;
-  margin: 0 -8px;
+  margin: 0;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;

@@ -9,23 +9,24 @@ import { usePathname } from "next/navigation";
 import { HomeIcon, LibraryIcon, SearchNavIcon } from "@/components/header/NavigationIcons";
 import search from "@/public/header/search.png";
 import playlistImage from "@/public/header/navigation/playlist-image.png";
-
-const NAV_ITEMS = [
-  { name: "Главная", href: "/", Icon: HomeIcon },
-  { name: "Поиск", href: "/search", Icon: SearchNavIcon },
-  { name: "Плейлист", href: "/library", Icon: LibraryIcon },
-] as const;
-
-const MY_PLAYLISTS = [
-  { id: 1, name: "Любимая музыка", trackCount: 1 },
-  { id: 2, name: "Для тренировки", trackCount: 24 },
-  { id: 3, name: "В дорогу", trackCount: 18 },
-  { id: 4, name: "Релакс", trackCount: 42 },
-  { id: 5, name: "Новинки", trackCount: 7 },
-] as const;
+import {useEffect} from "react";
+import {usePlaylistStore} from "@/store/playlistStore";
+import {useModalStore} from "@/store/modalStore";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { playlists, fetchPlaylists } = usePlaylistStore();
+  const openAddPlaylistModal: () => void = useModalStore((state) => state.openAddPlaylistModal);
+
+  const NAV_ITEMS = [
+    { name: "Главная", href: "/", Icon: HomeIcon },
+    { name: "Поиск", href: "/search", Icon: SearchNavIcon },
+    { name: "Плейлист", href: "/library", Icon: LibraryIcon },
+  ] as const;
+
+  useEffect(() => {
+    fetchPlaylists();
+  }, [fetchPlaylists]);
 
   return (
     <nav className={styles.sidebar} >
@@ -54,6 +55,7 @@ export default function Sidebar() {
           <div className={styles.libraryHeader}>
             <h2 className={styles.libraryTitle}>Мои библиотеки</h2>
             <button
+              onClick={() => openAddPlaylistModal()}
               className={styles.libraryAddBtn}
               type="button"
             >
@@ -72,7 +74,7 @@ export default function Sidebar() {
         </div>
 
         <ul className={styles.playlistList}>
-          {MY_PLAYLISTS.map((playlist) => (
+          {playlists.map((playlist) => (
             <li className={styles.playlistItem} key={playlist.id}>
               <Image
                 className={styles.playlistCover}
@@ -83,7 +85,7 @@ export default function Sidebar() {
               />
               <div className={styles.playlistInfo}>
                 <p className={styles.playlistName}>{playlist.name}</p>
-                <p className={styles.playlistMeta}>{playlist.trackCount} треков</p>
+                <p className={styles.playlistMeta}>{"1"} треков</p>
               </div>
             </li>
           ))}
