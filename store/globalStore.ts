@@ -19,6 +19,7 @@ interface GlobalStore {
   clearUser: () => void;
 
   handleLogout: () => Promise<void>;
+  updateUser: () => Promise<void>;
 }
 
 export const useGlobalStore = create<GlobalStore>()(
@@ -47,6 +48,11 @@ export const useGlobalStore = create<GlobalStore>()(
         } finally {
           set({ isLoading: false });
         }
+      },
+
+      updateUser: async () => {
+        const profile = await userServices.getMyProfile();
+        set({ user: profile });
       },
     }),
     {
