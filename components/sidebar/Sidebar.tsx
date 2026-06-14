@@ -28,7 +28,7 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <nav className={styles.sidebar} aria-label="Навигация">
+    <nav className={styles.sidebar} >
       <div className={styles.navMenu}>
         {NAV_ITEMS.map(({ name, href, Icon }) => {
           const isActive = pathname === href;
@@ -38,11 +38,9 @@ export default function Sidebar() {
               key={href}
               href={href}
               className={clsx(styles.navLink, isActive && styles.navLinkActive)}
-              aria-current={isActive ? "page" : undefined}
             >
               <span
                 className={clsx(styles.navIndicator, isActive && styles.navIndicatorActive)}
-                aria-hidden
               />
               <Icon className={styles.navIcon} />
               <span className={styles.navLabel}>{name}</span>
@@ -51,14 +49,13 @@ export default function Sidebar() {
         })}
       </div>
 
-      <section className={styles.library} aria-label="Мои библиотеки">
+      <section className={styles.library}>
         <div className={styles.libraryTop}>
           <div className={styles.libraryHeader}>
             <h2 className={styles.libraryTitle}>Мои библиотеки</h2>
             <button
               className={styles.libraryAddBtn}
               type="button"
-              aria-label="Добавить библиотеку"
             >
               <Plus className={styles.libraryAddIcon} size={18} strokeWidth={2.5} />
             </button>

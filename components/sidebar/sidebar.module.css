@@ -205,6 +205,7 @@
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  overflow-x: hidden;
   padding: 0 4px 0 0;
   list-style: none;
   scrollbar-color: rgba(224, 112, 32, 0.55) transparent;
