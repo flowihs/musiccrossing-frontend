@@ -1,0 +1,45 @@
+.SoundCardList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.SoundCardListContainer {
+    display: flex;
+    border-radius: 12px;
+    gap: 50px;
+}
+
+.SoundCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.SoundName {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.AuthorTitle {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #B5B5B5;
+}
+
+.SoundCardListTitle {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.SoundCard {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    cursor: pointer;
+}

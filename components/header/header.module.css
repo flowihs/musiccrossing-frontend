@@ -190,7 +190,7 @@
     border: 1px solid var(--border-subtle);
     position: absolute;
     right: 0;
-    top: calc(100% + 12px);
+    top: calc(100% + 20px);
     border-radius: 14px;
     box-shadow: var(--shadow-md);
     z-index: 1000;
