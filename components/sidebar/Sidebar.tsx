@@ -115,10 +115,10 @@ export default function Sidebar() {
 
                     <ul className={styles.playlistList}>
                         {visiblePlaylists.map((playlist) => (
-                            <li className={styles.playlistItem} key={playlist.id}>
+                           <li className={styles.playlistItem} key={playlist.id}>
                                 <Image
                                     className={styles.playlistCover}
-                                    src={playlistImage}
+                                         src={playlistImage}
                                     alt=""
                                     width={52}
                                     height={52}
