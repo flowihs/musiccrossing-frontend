@@ -1,0 +1,111 @@
+.SoundCardList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.SoundCardListContainer {
+    display: flex;
+    gap: 45px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: pointer;
+    overflow-y: hidden;
+}
+
+.SoundCardListContainer.is-dragging {
+    cursor: grabbing;
+}
+
+.SoundCardListContainer.is-dragging * {
+    pointer-events: none !important;
+}
+
+.SoundCardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.SoundName {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+    transition: all 0.5s ease;
+}
+
+.AuthorTitle {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #B5B5B5;
+}
+
+.SoundCardListTitle {
+    font-family: Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.SoundCard {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    cursor: pointer;
+    padding: 4px;
+    transition: all 0.5s ease;
+    flex-shrink: 0;
+}
+
+.SoundCard:hover {
+    transform: scale(1.02);
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.ImageContainer {
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+
+.SoundCardImage {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+.SoundCard:hover .SoundCardImage {
+    box-shadow: 0px 0px 19px 8px #F868189E;
+    transform: scale(1.05);
+}
+
+.StartMusicButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    background: #1B1D23D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+}
+
+.SoundCard:hover .StartMusicButton {
+    opacity: 1;
+    visibility: visible;
+}
+
+.StartMusicButton:hover {
+    transform: scale(1.02);
+    background: #1b1d23;
+}
