@@ -41,9 +41,17 @@ export function AddPlaylistModal() {
 
     if (isOpen) {
         return (
-            <form onSubmit={handleSubmit} className="addPlaylistModal">
+            <div className="modalOverlay" onClick={closeAddPlaylistModal}>
+            <form onSubmit={handleSubmit} className="addPlaylistModal" onClick={(e) => e.stopPropagation()}>
                 <div className="addPlaylistModalHeader">
                     <p className="addPlaylistModalHeaderTitle">Создать плейлист</p>
+                    <button
+                        type="button"
+                        className="addPlaylistModalCloseButton"
+                        onClick={closeAddPlaylistModal}
+                    >
+                        ✕
+                    </button>
                 </div>
                 <div className="addPlaylistModalMain">
                     <div className="addPlaylistModalMainInputsContainer">
@@ -78,6 +86,7 @@ export function AddPlaylistModal() {
                     </button>
                 </div>
             </form>
+        </div>
         )
     }
 }

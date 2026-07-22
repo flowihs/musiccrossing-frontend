@@ -17,12 +17,44 @@
     gap: 16px;
 }
 
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
 .addPlaylistModalHeader {
     padding-bottom: 20px;
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.addPlaylistModalCloseButton {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-primary, #fff);
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.addPlaylistModalCloseButton:hover {
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .addPlaylistModalHeaderTitle {
