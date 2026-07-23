@@ -91,7 +91,7 @@ export function SocialLogin({ activeTab }: SocialLoginProps) {
 
     useEffect(() => {
         if (window.google) {
-            setTimeout(() => {
+            setTimeout(() => {  
                 renderGoogleButton();
             }, 50);
         }
