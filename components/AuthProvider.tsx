@@ -3,7 +3,7 @@
 import { api } from "@/lib/axios";
 import { userServices } from "@/lib/helpers/getMyProfile";
 import { useGlobalStore } from "@/store/globalStore";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function AuthProvider({
   children,
