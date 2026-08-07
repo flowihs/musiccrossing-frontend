@@ -1,22 +1,22 @@
 "use client";
 
-import {createPortal} from "react-dom";
-import type {ReactNode} from "react";
+import { createPortal } from "react-dom";
+import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 
 interface ToastPortalProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export function ToastPortal({ children }: ToastPortalProps) {
-    const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    if (!mounted) return null;
-    if (typeof window === "undefined") return null;
+  if (!mounted) return null;
+  if (typeof window === "undefined") return null;
 
-    return createPortal(children, document.body);
+  return createPortal(children, document.body);
 }

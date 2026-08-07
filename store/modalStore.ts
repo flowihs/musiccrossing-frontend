@@ -1,20 +1,21 @@
 import { create } from "zustand";
 
 interface ModalStore {
-    isAddPlaylistModalOpen: boolean;
-    openAddPlaylistModal: () => void;
-    closeAddPlaylistModal: () => void;
-    toggleAddPlaylistModal: () => void;
+  isAddPlaylistModalOpen: boolean;
+  openAddPlaylistModal: () => void;
+  closeAddPlaylistModal: () => void;
+  toggleAddPlaylistModal: () => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
-    isAddPlaylistModalOpen: false,
+  isAddPlaylistModalOpen: false,
 
-    openAddPlaylistModal: () => set({ isAddPlaylistModalOpen: true }),
+  openAddPlaylistModal: () => set({ isAddPlaylistModalOpen: true }),
 
-    closeAddPlaylistModal: () => set({ isAddPlaylistModalOpen: false }),
+  closeAddPlaylistModal: () => set({ isAddPlaylistModalOpen: false }),
 
-    toggleAddPlaylistModal: () => set((state) => ({
-        isAddPlaylistModalOpen: !state.isAddPlaylistModalOpen
+  toggleAddPlaylistModal: () =>
+    set((state) => ({
+      isAddPlaylistModalOpen: !state.isAddPlaylistModalOpen,
     })),
 }));

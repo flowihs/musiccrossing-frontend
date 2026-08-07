@@ -152,7 +152,9 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: 100px;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .search:focus-within {
