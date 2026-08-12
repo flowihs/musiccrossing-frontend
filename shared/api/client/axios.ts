@@ -9,6 +9,7 @@ const API_BASE_URL =
 export const api = axios.create({
   baseURL: API_BASE_URL,
   withCredentials: true,
+  timeout: 10000, // 10 seconds
 });
 
 let isRefreshing = false;
@@ -47,7 +48,7 @@ api.interceptors.response.use(
 
     originalRequest._retry = true;
     isRefreshing = true;
-
+    
     try {
       await api.post("/auth/refresh");
       processQueue(null);

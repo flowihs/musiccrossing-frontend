@@ -20,6 +20,7 @@ import { useGlobalStore } from "@/store/globalStore";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  
   const user = useGlobalStore((state) => state.user);
   const { playlists, fetchPlaylists } = usePlaylistStore();
   const openAddPlaylistModal: () => void = useModalStore(
@@ -37,7 +38,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     setVisibleCount(10);
-  }, [searchQuery]);
+  }, [searchQuery]);   
 
   const NAV_ITEMS = [
     { name: "Главная", href: "/", Icon: HomeIcon },

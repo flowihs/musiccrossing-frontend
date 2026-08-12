@@ -3,7 +3,7 @@
 import styles from "./auth.module.css";
 import { AuthTab } from "./types";
 import { FORM_CONFIG, BUTTON_TEXTS } from "./constants";
-import { api } from "@/lib/axios";
+import { api } from "@/shared/api/client/axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Toast } from "@/components/toast/Toast";

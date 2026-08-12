@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./auth.module.css";
-import { api } from "@/lib/axios";
+import { api } from "@/shared/api/client/axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Toast } from "@/components/toast/Toast";

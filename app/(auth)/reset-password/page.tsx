@@ -3,7 +3,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { api } from "@/lib/axios";
+import { api } from "@/shared/api/client/axios";
 import { ToastPortal } from "@/components/toast/ToastPortal";
 import { Toast } from "@/components/toast/Toast";
 import axios from "axios";

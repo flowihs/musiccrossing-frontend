@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { api } from "@/lib/axios";
+import { api } from "@/shared/api/client/axios";
 
 interface Playlist {
   id: number;

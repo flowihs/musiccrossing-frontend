@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "@/lib/axios";
+import { api } from "@/shared/api/client/axios";
 import { userServices } from "@/lib/helpers/getMyProfile";
 import { useGlobalStore } from "@/store/globalStore";
 import { useEffect, useState } from "react";
