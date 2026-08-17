@@ -1,4 +1,4 @@
-import AuthProvider from "@/components/AuthProvider";
+import { AuthProvider } from "./_providers/auth-provider.client";
 
 import type { ReactNode } from "react";
 

@@ -1,4 +1,6 @@
-import AuthPageClient from "./page-client";
+import { Suspense } from "react";
+
+import { AuthPageClient } from "./_components/auth-page.client";
 
 export const metadata = {
   title: "Авторизация | MusicShare",
@@ -8,7 +10,9 @@ export const metadata = {
 export default function AuthPage() {
   return (
     <main className="authPage">
-      <AuthPageClient />
+      <Suspense fallback={null}>
+        <AuthPageClient />
+      </Suspense>
     </main>
   );
 }

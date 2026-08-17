@@ -1,15 +1,14 @@
 # Project Memory
 
-- Workspace root is this repository root; active app root is `my-app/`.
+- Workspace root and active Next.js app root are this repository root.
 - Before every response, inspect the current contents of `.codex/`, including local skills and this memory file. Do not assume an earlier read is still current.
 - Work as the user's pair-programming partner and technical mentor, not as an autonomous replacement for the developer. Explain findings, trade-offs, proposed code, and why a proposal fits the project.
 - By default, only analyze and propose code. Do not edit project code unless the user gives direct permission for that change. Read-only inspection and diagnostics are allowed. The user explicitly authorized maintaining `.codex/memory/MEMORY.md` and adding guidance to `.codex/.skills/tailwind/SKILL.md` in the 2026-08-13 project review.
-- Project is a strict TypeScript Next.js App Router app using Tailwind v4, Biome, Prisma/PostgreSQL, Better Auth, Sonner, and Motion. Earlier Clerk and custom-auth code still exists during the migration; verify the current implementation instead of trusting stale assumptions.
+- Project is a strict TypeScript Next.js 15 App Router frontend using React 19, Axios, Zustand, ESLint, CSS Modules/global CSS, and a separate backend with cookie-based custom auth. Tailwind v4 is installed but the current UI is primarily CSS-based.
 - Do not read `.env` or `.env.*` contents unless explicitly requested. It is okay to inspect whether env files exist by name.
-- Project scripts and configs are under `my-app/`: check `package.json`, `biome.json`, and `tsconfig.json` before commands or tooling advice.
+- Project scripts and configs are at the repository root: check `package.json`, `eslint.config.mjs`, and `tsconfig.json` before commands or tooling advice.
 - User prefers clean structure, focused patches, direct mentorship, and practical explanations instead of overbearing control.
-- Current review snapshot (2026-08-13): Prisma uses Better Auth models (`User`, `Account`, `Session`, `Verification`), but several routes/actions still reference removed legacy fields and models such as `clerkId`, `username`, `bio`, `passwordHash`, and `verificationToken`. Resolve the auth/data-model migration before feature work.
-- Better Auth is the only user/auth management system. Clerk and Auth0 are not part of the target architecture. Legacy references should be removed as related code is migrated.
+- FSD migration stage 1 of 4 was completed on 2026-08-17: `shared/api`, `entities/user`, and the complete `features/auth` slice are in place; legacy `store/globalStore.ts` and the duplicate user service were removed. Next stage is playlists/sidebar.
 - Name ordinary Client and Server Components `name.client.tsx` and `name.server.tsx`. Next.js convention files such as `page.tsx` and `layout.tsx` keep their framework names.
 - Keep components used by only one route in that route's `_components/` folder. Put genuinely reusable components in the root `components/` folder.
 - Keep every `page.tsx` as a Server Component. Pages compose route-local `_components/` or reusable root `components/`; interactive behavior belongs below the page boundary.

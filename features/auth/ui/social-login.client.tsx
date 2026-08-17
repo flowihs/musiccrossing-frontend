@@ -1,16 +1,32 @@
 "use client";
 
-import styles from "./auth.module.css";
-import { api } from "@/shared/api/client/axios";
 import { useRouter } from "next/navigation";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
+
 import { Toast } from "@/components/toast/Toast";
 import { ToastPortal } from "@/components/toast/ToastPortal";
 
+import styles from "./auth.module.css";
+import { useGoogleLogin } from "../model/useGoogleLogin";
+
 declare global {
   interface Window {
-    google?: any;
+    google?: {
+      accounts: {
+        id: {
+          initialize: (options: Record<string, unknown>) => void;
+          renderButton: (
+            element: HTMLElement,
+            options: Record<string, unknown>,
+          ) => void;
+        };
+      };
+    };
   }
+}
+
+interface GoogleCredentialResponse {
+  credential: string;
 }
 
 interface SocialLoginProps {
@@ -19,28 +35,20 @@ interface SocialLoginProps {
 
 export function SocialLogin({ activeTab }: SocialLoginProps) {
   const router = useRouter();
-  const [error, setError] = useState<{ title: string; message: string } | null>(
-    null,
-  );
+  const { loginWithGoogle, error, clearError } = useGoogleLogin();
   const googleInitialized = useRef(false);
 
-  const handleGoogleCredentialResponse = async (response: any) => {
-    try {
-      const res = await api.post("/auth/google", {
-        idToken: response.credential,
-      });
-
-      if (res.status === 200) {
+  const handleGoogleCredentialResponse = useCallback(
+    async (response: GoogleCredentialResponse) => {
+      try {
+        await loginWithGoogle(response.credential);
         router.push("/");
+      } catch {
+        // useGoogleLogin exposes a normalized error for the toast below.
       }
-    } catch (error: any) {
-      setError({
-        title: "Ошибка авторизации",
-        message:
-          error.response?.data?.message || "Не удалось войти через Google",
-      });
-    }
-  };
+    },
+    [loginWithGoogle, router],
+  );
 
   const renderGoogleButton = useCallback(() => {
     const element = document.getElementById("google-login-button");
@@ -73,7 +81,7 @@ export function SocialLogin({ activeTab }: SocialLoginProps) {
         logo_alignment: "center",
       });
     }
-  }, []);
+  }, [handleGoogleCredentialResponse]);
 
   useEffect(() => {
     const loadGoogleScript = () => {
@@ -112,7 +120,7 @@ export function SocialLogin({ activeTab }: SocialLoginProps) {
             title={error.title}
             message={error.message}
             error={true}
-            onClose={() => setError(null)}
+            onClose={clearError}
           />
         </ToastPortal>
       )}

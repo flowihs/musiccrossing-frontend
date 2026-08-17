@@ -4,31 +4,29 @@ import { useCallback, useState } from "react";
 
 import { userApi, useUserStore } from "@/entities/user";
 
-
 import { getAuthError } from "./auth-error";
 import { authApi } from "../api/auth.api";
 
 import type { AuthError } from "./auth-error";
-import type { RegisterSchema } from "@/entities/user";
 
-export function useRegister() {
+export function useGoogleLogin() {
   const setUser = useUserStore((state) => state.setUser);
   const [error, setError] = useState<AuthError | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const register = useCallback(
-    async (credentials: RegisterSchema) => {
+  const loginWithGoogle = useCallback(
+    async (idToken: string) => {
       setIsLoading(true);
       setError(null);
 
       try {
-        await authApi.register(credentials);
+        await authApi.loginWithGoogle(idToken);
         const user = await userApi.getCurrentUser();
         setUser(user);
         return user;
       } catch (requestError: unknown) {
         setError(
-          getAuthError(requestError, "Не удалось зарегистрировать аккаунт"),
+          getAuthError(requestError, "Не удалось войти через Google"),
         );
         throw requestError;
       } finally {
@@ -38,5 +36,10 @@ export function useRegister() {
     [setUser],
   );
 
-  return { register, isLoading, error, clearError: () => setError(null) };
+  return {
+    loginWithGoogle,
+    isLoading,
+    error,
+    clearError: () => setError(null),
+  };
 }

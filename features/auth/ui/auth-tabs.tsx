@@ -1,5 +1,6 @@
 import styles from "./auth.module.css";
-import { AuthTab } from "./types";
+
+import type { AuthTab } from "./types";
 
 interface AuthTabsProps {
   activeTab: AuthTab;

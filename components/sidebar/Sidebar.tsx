@@ -1,27 +1,29 @@
 "use client";
 
-import styles from "./sidebar.module.css";
-import Image from "next/image";
-import Link from "next/link";
 import clsx from "clsx";
 import { Plus } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState, useRef } from "react";
+
 import {
   HomeIcon,
   LibraryIcon,
   SearchNavIcon,
 } from "@/components/header/NavigationIcons";
-import search from "@/public/header/search.png";
+import { useUserStore } from "@/entities/user";
 import playlistImage from "@/public/header/navigation/playlist-image.png";
-import { useEffect, useState, useRef } from "react";
-import { usePlaylistStore } from "@/store/playlistStore";
+import search from "@/public/header/search.png";
 import { useModalStore } from "@/store/modalStore";
-import { useGlobalStore } from "@/store/globalStore";
+import { usePlaylistStore } from "@/store/playlistStore";
+
+import styles from "./sidebar.module.css";
 
 export default function Sidebar() {
   const pathname = usePathname();
   
-  const user = useGlobalStore((state) => state.user);
+  const user = useUserStore((state) => state.user);
   const { playlists, fetchPlaylists } = usePlaylistStore();
   const openAddPlaylistModal: () => void = useModalStore(
     (state) => state.openAddPlaylistModal,

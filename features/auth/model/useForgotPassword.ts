@@ -2,32 +2,35 @@
 
 import { useCallback, useState } from "react";
 
-import { useUserStore } from "@/entities/user";
-
 import { getAuthError } from "./auth-error";
 import { authApi } from "../api/auth.api";
 
 import type { AuthError } from "./auth-error";
 
-export function useLogout() {
-  const clearUser = useUserStore((state) => state.clearUser);
+export function useForgotPassword() {
   const [error, setError] = useState<AuthError | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const logout = useCallback(async () => {
+  const requestPasswordReset = useCallback(async (email: string) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      await authApi.logout();
-      clearUser();
+      await authApi.requestPasswordReset(email);
     } catch (requestError: unknown) {
-      setError(getAuthError(requestError, "Не удалось выйти из аккаунта"));
+      setError(
+        getAuthError(requestError, "Не удалось отправить письмо для сброса"),
+      );
       throw requestError;
     } finally {
       setIsLoading(false);
     }
-  }, [clearUser]);
+  }, []);
 
-  return { logout, isLoading, error, clearError: () => setError(null) };
+  return {
+    requestPasswordReset,
+    isLoading,
+    error,
+    clearError: () => setError(null),
+  };
 }

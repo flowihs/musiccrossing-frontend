@@ -1,6 +1,6 @@
-"use client";
-
 import axios from "axios";
+
+import type { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ||
@@ -18,6 +18,10 @@ let failedQueue: Array<{
   reject: (reason?: unknown) => void;
 }> = [];
 
+interface RetryRequestConfig extends InternalAxiosRequestConfig {
+  _retry?: boolean;
+}
+
 const processQueue = (error: unknown | null) => {
   failedQueue.forEach((prom) => {
     if (error) {
@@ -31,10 +35,15 @@ const processQueue = (error: unknown | null) => {
 
 api.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
+  async (error: AxiosError) => {
+    const originalRequest = error.config as RetryRequestConfig | undefined;
 
-    if (error.response?.status !== 401 || originalRequest._retry) {
+    if (
+      error.response?.status !== 401 ||
+      !originalRequest ||
+      originalRequest._retry ||
+      originalRequest.url?.includes("/auth/refresh")
+    ) {
       return Promise.reject(error);
     }
 
@@ -48,7 +57,7 @@ api.interceptors.response.use(
 
     originalRequest._retry = true;
     isRefreshing = true;
-    
+
     try {
       await api.post("/auth/refresh");
       processQueue(null);

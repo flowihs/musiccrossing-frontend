@@ -1,23 +1,34 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
 import clsx from "clsx";
 import { LogOut, Settings, User } from "lucide-react";
-import styles from "@/components/header/header.module.css";
 import Image from "next/image";
+import { useState, useRef, useEffect, useCallback } from "react";
+
+import styles from "@/components/header/header.module.css";
+import { useUserStore } from "@/entities/user";
+import { useLogout } from "@/features/auth";
 import avatar from "@/public/header/avatar.png";
-import { useGlobalStore } from "@/store/globalStore";
 
 export default function HeaderMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const user = useGlobalStore((state) => state.user);
-  const handleLogout = useGlobalStore((state) => state.handleLogout);
+  const user = useUserStore((state) => state.user);
+  const { logout, isLoading } = useLogout();
   const menuRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsMenuOpen(false);
+    } catch {
+      // The hook exposes the request error for the future shared toast layer.
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -87,7 +98,8 @@ export default function HeaderMenu() {
             <li
               className={styles.logoutBtn}
               role="menuitem"
-              onClick={handleLogout}
+              aria-disabled={isLoading}
+              onClick={() => void handleLogout()}
             >
               <LogOut
                 className={styles.menuItemIcon}

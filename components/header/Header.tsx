@@ -1,17 +1,19 @@
 "use client";
 
-import styles from "./header.module.css";
-import Image from "next/image";
-import logo from "@/public/header/logo.png";
-import search from "@/public/header/search.png";
-import Link from "next/link";
 import clsx from "clsx";
 import { Bell, Users } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
 import HeaderMenu from "@/components/header/HeaderMenu";
-import { useGlobalStore } from "@/store/globalStore";
+import { useUserStore } from "@/entities/user";
+import logo from "@/public/header/logo.png";
+import search from "@/public/header/search.png";
+
+import styles from "./header.module.css";
 
 export default function Header() {
-  const user = useGlobalStore((state) => state.user);
+  const user = useUserStore((state) => state.user);
 
   return (
     <header className={styles.header}>

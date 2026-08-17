@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+
+import { AuthForm } from "./auth-form.client";
+import { AuthTabs } from "./auth-tabs";
 import styles from "./auth.module.css";
-import { AuthTab } from "./types";
-import { BackButton } from "./BackButton";
-import { AuthTabs } from "./AuthTabs";
-import { AuthForm } from "./AuthForm";
-import { SocialLogin } from "./SocialLogin";
+import { BackButton } from "./back-button";
+import { SocialLogin } from "./social-login.client";
+
+import type { AuthTab } from "./types";
 
 export function AuthCard({ initialTab = "login" }: { initialTab?: AuthTab }) {
   const [activeTab, setActiveTab] = useState<AuthTab>(initialTab);
