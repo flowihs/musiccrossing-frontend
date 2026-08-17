@@ -8,10 +8,10 @@
 - Do not read `.env` or `.env.*` contents unless explicitly requested. It is okay to inspect whether env files exist by name.
 - Project scripts and configs are at the repository root: check `package.json`, `eslint.config.mjs`, and `tsconfig.json` before commands or tooling advice.
 - User prefers clean structure, focused patches, direct mentorship, and practical explanations instead of overbearing control.
-- FSD migration stage 1 of 4 was completed on 2026-08-17: `shared/api`, `entities/user`, and the complete `features/auth` slice are in place; legacy `store/globalStore.ts` and the duplicate user service were removed. Next stage is playlists/sidebar.
+- FSD migration stages 1–2 of 4 were completed on 2026-08-17. `shared/api`, `entities/user`, `features/auth`, `entities/playlist`, `features/create-playlist`, and `widgets/sidebar` are in place. Legacy root auth/playlist/modal stores and the old sidebar/playlist components were removed. Next stage is the music domain, home UI, header, and main-shell widgets.
 - Name ordinary Client and Server Components `name.client.tsx` and `name.server.tsx`. Next.js convention files such as `page.tsx` and `layout.tsx` keep their framework names.
-- Keep components used by only one route in that route's `_components/` folder. Put genuinely reusable components in the root `components/` folder.
+- Keep components used by only one route in that route's `_components/` folder. Put domain UI in its FSD slice and genuinely reusable design primitives in `shared/ui`.
 - Keep every `page.tsx` as a Server Component. Pages compose route-local `_components/` or reusable root `components/`; interactive behavior belongs below the page boundary.
-- Put React-hook logic that works with business data into named custom hooks under the root `hooks/` folder. Keep small purely visual state local when extraction would add no domain value.
+- Put feature-specific business hooks in that feature's `model/` segment. Reserve shared hooks for genuinely cross-domain behavior; keep small purely visual state local.
 - Put reused CSS rules and reusable global style primitives in `app/globals.css`; keep one-off styling local with Tailwind utilities.
 - Destructive auth/database migrations are acceptable while the database contains only disposable test data, but still state when a migration drops data.

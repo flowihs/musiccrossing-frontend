@@ -1,8 +1,9 @@
 import "./globals.css";
 import "./layout.css";
+
 import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/Sidebar";
-import { AddPlaylistModal } from "@/components/playlist/AddPlaylistModal";
+import { CreatePlaylistModal } from "@/features/create-playlist";
+import { Sidebar } from "@/widgets/sidebar";
 
 export const metadata = {
   title: "MusicShare",
@@ -29,7 +30,7 @@ export default function MainLayout({
         </div>
       </div>
 
-      <AddPlaylistModal />
+      <CreatePlaylistModal />
     </div>
   );
 }

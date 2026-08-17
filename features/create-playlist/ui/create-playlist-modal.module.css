@@ -64,9 +64,6 @@
   color: var(--text-primary);
 }
 
-.addPlaylistModalHeaderLine {
-}
-
 .addPlaylistModalMain {
   display: flex;
   justify-content: center;
@@ -85,7 +82,7 @@
   gap: 6px;
 }
 
-.addPlaylistModalMainInput p {
+.addPlaylistModalMainInput span {
   font-size: 14px;
   font-weight: bold;
   padding-left: 6px;
@@ -128,7 +125,24 @@
   color: #f2f2f2;
 }
 
+.addPlaylistModalFooterButton:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.errorMessage {
+  margin: 0;
+  color: #f87171;
+  font-size: 14px;
+}
+
 .addPlaylistModalFooter {
   display: flex;
   justify-content: right;
+}
+
+@media (max-width: 640px) {
+  .addPlaylistModal {
+    width: calc(100% - 32px);
+  }
 }

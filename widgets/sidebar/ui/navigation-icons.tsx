@@ -1,8 +1,4 @@
-
-import { 
-  House, Search, GalleryVerticalEnd 
-} from 'lucide-react';
-
+import { GalleryVerticalEnd, House, Search } from "lucide-react";
 
 type IconProps = {
   className?: string;
@@ -10,7 +6,7 @@ type IconProps = {
 
 export function HomeIcon({ className }: IconProps) {
   return (
-    <House 
+    <House
       className={className}
       width={27}
       height={24}

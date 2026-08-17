@@ -1,33 +1,35 @@
 "use client";
 
 import clsx from "clsx";
-import { Plus } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 
-import {
-  HomeIcon,
-  LibraryIcon,
-  SearchNavIcon,
-} from "@/components/header/NavigationIcons";
+import { usePlaylistStore } from "@/entities/playlist";
 import { useUserStore } from "@/entities/user";
+import { CreatePlaylistButton } from "@/features/create-playlist";
 import playlistImage from "@/public/header/navigation/playlist-image.png";
 import search from "@/public/header/search.png";
-import { useModalStore } from "@/store/modalStore";
-import { usePlaylistStore } from "@/store/playlistStore";
 
+import { HomeIcon, LibraryIcon, SearchNavIcon } from "./navigation-icons";
 import styles from "./sidebar.module.css";
 
-export default function Sidebar() {
+const NAV_ITEMS = [
+  { name: "Главная", href: "/", Icon: HomeIcon },
+  { name: "Поиск", href: "/search", Icon: SearchNavIcon },
+  { name: "Плейлист", href: "/library", Icon: LibraryIcon },
+] as const;
+
+export function Sidebar() {
   const pathname = usePathname();
-  
+
   const user = useUserStore((state) => state.user);
-  const { playlists, fetchPlaylists } = usePlaylistStore();
-  const openAddPlaylistModal: () => void = useModalStore(
-    (state) => state.openAddPlaylistModal,
-  );
+  const playlists = usePlaylistStore((state) => state.playlists);
+  const loadPlaylists = usePlaylistStore((state) => state.loadPlaylists);
+  const clearPlaylists = usePlaylistStore((state) => state.clearPlaylists);
+  const isLoading = usePlaylistStore((state) => state.isLoading);
+  const error = usePlaylistStore((state) => state.error);
 
   const [visibleCount, setVisibleCount] = useState(10);
   const loaderRef = useRef<HTMLLIElement | null>(null);
@@ -40,17 +42,17 @@ export default function Sidebar() {
 
   useEffect(() => {
     setVisibleCount(10);
-  }, [searchQuery]);   
-
-  const NAV_ITEMS = [
-    { name: "Главная", href: "/", Icon: HomeIcon },
-    { name: "Поиск", href: "/search", Icon: SearchNavIcon },
-    { name: "Плейлист", href: "/library", Icon: LibraryIcon },
-  ] as const;
+  }, [searchQuery]);
 
   useEffect(() => {
-    fetchPlaylists();
-  }, [fetchPlaylists]);
+    clearPlaylists();
+
+    if (user?.id) {
+      void loadPlaylists();
+    }
+
+    return clearPlaylists;
+  }, [clearPlaylists, loadPlaylists, user?.id]);
 
   useEffect(() => {
     if (!loaderRef.current || filteredPlaylists.length <= visibleCount) return;
@@ -106,17 +108,10 @@ export default function Sidebar() {
           <div className={styles.libraryTop}>
             <div className={styles.libraryHeader}>
               <h2 className={styles.libraryTitle}>Мои библиотеки</h2>
-              <button
-                onClick={() => openAddPlaylistModal()}
+              <CreatePlaylistButton
                 className={styles.libraryAddBtn}
-                type="button"
-              >
-                <Plus
-                  className={styles.libraryAddIcon}
-                  size={18}
-                  strokeWidth={2.5}
-                />
-              </button>
+                iconClassName={styles.libraryAddIcon}
+              />
             </div>
 
             <div className={clsx(styles.search, styles.librarySearch)}>
@@ -136,6 +131,18 @@ export default function Sidebar() {
           </div>
 
           <ul className={styles.playlistList}>
+            {isLoading && playlists.length === 0 && (
+              <li className={styles.playlistStatus}>Загрузка...</li>
+            )}
+
+            {error && playlists.length === 0 && (
+              <li className={styles.playlistError}>{error}</li>
+            )}
+
+            {!isLoading && !error && filteredPlaylists.length === 0 && (
+              <li className={styles.playlistStatus}>Плейлисты не найдены</li>
+            )}
+
             {visiblePlaylists.map((playlist) => (
               <li className={styles.playlistItem} key={playlist.id}>
                 <Image
@@ -147,7 +154,9 @@ export default function Sidebar() {
                 />
                 <div className={styles.playlistInfo}>
                   <p className={styles.playlistName}>{playlist.name}</p>
-                  <p className={styles.playlistMeta}>{"1"} треков</p>
+                  <p className={styles.playlistMeta}>
+                    {playlist.trackCount ?? 0} треков
+                  </p>
                 </div>
               </li>
             ))}

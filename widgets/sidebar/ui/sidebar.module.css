@@ -281,6 +281,19 @@
   color: var(--text-secondary);
 }
 
+.playlistStatus,
+.playlistError {
+  padding: 12px 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  list-style: none;
+}
+
+.playlistError {
+  color: #f87171;
+}
+
 /* ── Responsive ── */
 
 @media (max-width: 1440px) {
