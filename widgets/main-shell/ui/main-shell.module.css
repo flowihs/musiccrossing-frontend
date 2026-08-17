@@ -1,0 +1,40 @@
+.shell {
+  min-height: 100vh;
+  padding: 0 24px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.container {
+  display: flex;
+  gap: 46px;
+  max-width: 1880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .shell {
+    padding: 0 16px;
+  }
+
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .shell {
+    padding: 0 12px;
+  }
+}

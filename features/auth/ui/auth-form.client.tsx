@@ -3,8 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { Toast } from "@/components/toast/Toast";
-import { ToastPortal } from "@/components/toast/ToastPortal";
+import { Toast, ToastPortal } from "@/shared/ui/toast";
 
 import styles from "./auth.module.css";
 import { getButtonText, getFormConfig } from "./constants";

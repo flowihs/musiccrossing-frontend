@@ -1,31 +1,23 @@
 {
-  "name": "my-app",
+  "name": "musicshare-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "verify": "npm run typecheck && npm run lint"
   },
   "dependencies": {
-    "@radix-ui/react-checkbox": "^1.3.2",
-    "@radix-ui/react-dialog": "^1.1.14",
-    "@radix-ui/react-popover": "^1.1.14",
-    "@radix-ui/react-radio-group": "^1.3.7",
-    "@radix-ui/react-select": "^2.2.5",
-    "@radix-ui/react-slider": "^1.3.5",
-    "@radix-ui/react-slot": "^1.2.3",
     "axios": "^1.15.0",
-    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.536.0",
     "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-use": "^17.6.0",
     "tailwind-merge": "^3.3.1",
-    "vaul": "^1.1.2",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
@@ -41,7 +33,6 @@
     "eslint-plugin-security": "^4.0.1",
     "prettier": "3.9.6",
     "tailwindcss": "^4",
-    "tw-animate-css": "^1.3.6",
     "typescript": "^5"
   }
 }

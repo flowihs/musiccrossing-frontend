@@ -1,8 +1,9 @@
 import "./globals.css";
-import "./layout.css";
 
-import Header from "@/components/header/Header";
+import { PlaylistProvider } from "@/app/_providers/playlist-provider.client";
 import { CreatePlaylistModal } from "@/features/create-playlist";
+import { Header } from "@/widgets/header";
+import { MainShell } from "@/widgets/main-shell";
 import { Sidebar } from "@/widgets/sidebar";
 
 export const metadata = {
@@ -21,16 +22,14 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="main-shell">
-      <Header />
-      <div className="container-main">
-        <Sidebar />
-        <div className="RootLayout">
-          <main className="content">{children}</main>
-        </div>
-      </div>
-
-      <CreatePlaylistModal />
-    </div>
+    <PlaylistProvider>
+      <MainShell
+        header={<Header />}
+        sidebar={<Sidebar />}
+        modal={<CreatePlaylistModal />}
+      >
+        {children}
+      </MainShell>
+    </PlaylistProvider>
   );
 }

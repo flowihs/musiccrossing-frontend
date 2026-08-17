@@ -8,7 +8,7 @@
 - Do not read `.env` or `.env.*` contents unless explicitly requested. It is okay to inspect whether env files exist by name.
 - Project scripts and configs are at the repository root: check `package.json`, `eslint.config.mjs`, and `tsconfig.json` before commands or tooling advice.
 - User prefers clean structure, focused patches, direct mentorship, and practical explanations instead of overbearing control.
-- FSD migration stages 1–2 of 4 were completed on 2026-08-17. `shared/api`, `entities/user`, `features/auth`, `entities/playlist`, `features/create-playlist`, and `widgets/sidebar` are in place. Legacy root auth/playlist/modal stores and the old sidebar/playlist components were removed. Next stage is the music domain, home UI, header, and main-shell widgets.
+- The four-stage FSD migration was completed on 2026-08-17. Layers are `app`, `widgets`, `features`, `entities`, and `shared`; legacy root `components`, `store`, and `shared/error` are removed. ESLint enforces dependency direction and public APIs. On 2026-08-17, the user intentionally removed all generated tests and Vitest because they plan to add the test layer later. `npm run verify` runs typecheck and strict lint.
 - Name ordinary Client and Server Components `name.client.tsx` and `name.server.tsx`. Next.js convention files such as `page.tsx` and `layout.tsx` keep their framework names.
 - Keep components used by only one route in that route's `_components/` folder. Put domain UI in its FSD slice and genuinely reusable design primitives in `shared/ui`.
 - Keep every `page.tsx` as a Server Component. Pages compose route-local `_components/` or reusable root `components/`; interactive behavior belongs below the page boundary.

@@ -1,16 +1,20 @@
-import { SoundCardList } from "@/components/sound/soundCardList";
-import { MyLibrary } from "@/components/library/MyLibrary";
+import { LibraryPreview } from "@/widgets/library-preview";
+import { TrackCarousel } from "@/widgets/track-carousel";
+
+import { HOME_TRACK_SECTIONS } from "./_data/home.data";
+import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className="MainPageContent">
-      <MyLibrary title="Мои библиотеки" />
-
-      <SoundCardList title={"Title"} />
-
-      <SoundCardList title={"Title"} />
-
-      <SoundCardList title={"Title"} />
+    <div className={styles.page}>
+      <LibraryPreview />
+      {HOME_TRACK_SECTIONS.map((section) => (
+        <TrackCarousel
+          key={section.title}
+          title={section.title}
+          tracks={section.tracks}
+        />
+      ))}
     </div>
   );
 }

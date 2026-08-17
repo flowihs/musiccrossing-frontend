@@ -1,0 +1,17 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+}
+
+.title {
+  color: var(--text-primary);
+  font-size: 28px;
+}
+
+.description {
+  max-width: 640px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}

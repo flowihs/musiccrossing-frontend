@@ -1,0 +1,441 @@
+/* ── Top bar ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 20px 0 20px;
+  max-width: 1880px;
+  margin: 0 auto;
+}
+
+.logoLink {
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logoImage {
+  width: 36px;
+  height: 36px;
+}
+
+.logoTitle {
+  font-family: Dangrek, var(--font-sans);
+  font-weight: 400;
+  font-size: 27px;
+  color: var(--accent);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.headerSearch {
+  flex: 1;
+  min-width: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search:focus-within {
+  border-color: rgba(224, 112, 32, 0.35);
+  box-shadow: 0 0 0 3px var(--accent-muted);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  width: 100%;
+  transition: color 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.iconButton:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+/* ── Profile menu ── */
+
+.menu {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-left: 4px;
+}
+
+.authLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+}
+
+.signUpLink,
+.signInLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.signUpLink {
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+}
+
+.signUpLink:hover {
+  color: var(--accent-bright);
+  border-color: rgba(224, 112, 32, 0.35);
+  background: var(--accent-muted);
+}
+
+.signInLink {
+  color: #121212;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+}
+
+.signInLink:hover {
+  border-color: var(--accent-bright);
+  background: var(--accent-bright);
+}
+
+.avatarBtn {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  border-radius: 100px;
+  overflow: hidden;
+  padding: 0;
+  border: none;
+  background: transparent;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.avatarBtn:hover {
+  transform: scale(1.04);
+}
+
+.avatarBtnActive {
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 0 16px rgba(224, 112, 32, 0.3);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileMenu {
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 20px);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  padding: 8px;
+  animation: menuFadeIn 0.2s ease;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+
+.menuItem,
+.logoutBtn {
+  width: 100%;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  outline: none;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menuItemIcon {
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.logoutBtn {
+  color: #f87171;
+  margin-top: 2px;
+}
+
+.logoutBtn:hover {
+  color: #fca5a5;
+  background: rgba(248, 113, 113, 0.12);
+}
+
+.logoutBtn:hover .menuItemIcon {
+  opacity: 1;
+}
+
+.menuItem:hover {
+  background: var(--accent-muted);
+  color: var(--accent-bright);
+}
+
+.menuItem:hover .menuItemIcon {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px 8px;
+}
+
+.profileName {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.profileEmail {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-muted);
+  font-weight: 400;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menuDivider {
+  height: 1px;
+  margin: 4px 12px 6px;
+  background: var(--border-subtle);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 1024px) {
+  .header {
+    gap: 20px;
+  }
+
+  .logoTitle {
+    font-size: 24px;
+  }
+
+  .search {
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    padding: 14px 0 12px;
+  }
+
+  .logoLink {
+    order: 1;
+  }
+
+  .headerActions {
+    order: 2;
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .headerSearch {
+    order: 3;
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .search {
+    padding: 12px 18px;
+  }
+
+  .searchInput {
+    font-size: 14px;
+  }
+
+  .iconButton {
+    width: 38px;
+    height: 38px;
+  }
+
+  .avatarBtn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .profileMenu {
+    min-width: min(240px, calc(100vw - 32px));
+  }
+}
+
+@media (max-width: 640px) {
+  .iconButtonSecondary {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    gap: 10px 12px;
+    padding: 12px 0 10px;
+  }
+
+  .logo {
+    gap: 0;
+  }
+
+  .logoTitle {
+    display: none;
+  }
+
+  .logoImage {
+    width: 32px;
+    height: 32px;
+  }
+
+  .search {
+    padding: 11px 16px;
+    gap: 10px;
+  }
+
+  .searchInput,
+  .searchInput::placeholder {
+    font-size: 13px;
+  }
+
+  .iconButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .avatarBtn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menu {
+    margin-left: 0;
+  }
+
+  .profileMenu {
+    min-width: min(220px, calc(100vw - 24px));
+    top: calc(100% + 8px);
+  }
+
+  .profileName {
+    font-size: 14px;
+  }
+
+  .profileEmail {
+    font-size: 12px;
+  }
+}

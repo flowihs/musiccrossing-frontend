@@ -73,9 +73,3 @@ canvas {
   display: block;
   max-width: 100%;
 }
-
-.MainPageContent {
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}

@@ -1,0 +1,39 @@
+.section {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  color: var(--text-primary);
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.scroller {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 4px 20px;
+  cursor: grab;
+  scrollbar-color: rgba(224, 112, 32, 0.5) transparent;
+  scrollbar-width: thin;
+  touch-action: pan-y;
+}
+
+.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.dragging * {
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .scroller {
+    gap: 16px;
+  }
+}

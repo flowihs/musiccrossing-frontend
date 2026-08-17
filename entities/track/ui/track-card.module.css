@@ -1,0 +1,85 @@
+.card {
+  display: flex;
+  width: 188px;
+  flex: 0 0 188px;
+  flex-direction: column;
+  gap: 14px;
+  padding: 4px;
+  border-radius: 12px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card:hover {
+  background: var(--bg-secondary);
+  transform: translateY(-3px);
+}
+
+.coverContainer {
+  position: relative;
+  width: 180px;
+  height: 180px;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover .cover {
+  box-shadow: 0 8px 28px rgba(248, 104, 24, 0.35);
+}
+
+.playIndicator {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(27, 29, 35, 0.9);
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.playIndicator img {
+  width: 16px;
+  height: 16px;
+}
+
+.card:hover .playIndicator {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content {
+  min-width: 0;
+}
+
+.title,
+.artist {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  color: var(--text-primary);
+  font-size: 17px;
+  line-height: 1.3;
+}
+
+.artist {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}

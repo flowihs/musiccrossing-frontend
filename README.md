@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MusicShare Frontend
 
-## Getting Started
+Клиентская часть музыкальной платформы, в которой пользователь может создать аккаунт, управлять своей библиотекой и находить музыку. Проект разрабатывается на Next.js App Router и организован по методологии Feature-Sliced Design.
 
-First, run the development server:
+> Статус: активная разработка. Авторизация и базовая работа с плейлистами подключены к backend. Музыкальный каталог, поиск и воспроизведение пока не интегрированы с API.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Цели проекта
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Продуктовые
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- создать удобное пространство для поиска и прослушивания музыки;
+- дать пользователю личную библиотеку и инструменты для работы с плейлистами;
+- поддержать обычную и социальную авторизацию;
+- постепенно добавить взаимодействие между пользователями, рекомендации и уведомления.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Технические
 
-## Learn More
+- построить расширяемый frontend на Next.js и TypeScript;
+- разделить бизнес-сущности, пользовательские сценарии и крупные UI-блоки с помощью FSD;
+- сохранить предсказуемое направление зависимостей между слоями;
+- изолировать работу с backend и клиентским состоянием;
+- подготовить кодовую базу к дальнейшему росту продукта.
 
-To learn more about Next.js, take a look at the following resources:
+## Что уже реализовано
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- регистрация и вход по email и паролю;
+- вход через Google;
+- выход из аккаунта;
+- запрос и установка нового пароля;
+- восстановление пользовательской сессии при загрузке приложения;
+- cookie-based authentication с автоматическим обновлением сессии после ответа `401`;
+- загрузка плейлистов текущего пользователя;
+- создание плейлиста с обновлением интерфейса без перезагрузки страницы;
+- фильтрация плейлистов в боковой панели и постепенный вывод длинного списка;
+- главная страница с каруселями демонстрационных треков;
+- страницы библиотеки и поиска;
+- общая система toast-уведомлений;
+- миграция проекта с legacy-структуры на Feature-Sliced Design;
+- ESLint-ограничения для направления FSD-зависимостей и публичных API slices.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Технологии
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Инструмент        | Назначение                                        |
+| ----------------- | ------------------------------------------------- |
+| Next.js 15        | App Router, маршрутизация и Server Components     |
+| React 19          | Пользовательский интерфейс                        |
+| TypeScript        | Строгая типизация                                 |
+| Zustand           | Клиентское состояние пользователя и плейлистов    |
+| Axios             | Запросы к backend и refresh-interceptor           |
+| CSS Modules       | Локальные стили компонентов                       |
+| Tailwind CSS 4    | Подготовленная инфраструктура для utility-классов |
+| Lucide React      | Иконки интерфейса                                 |
+| ESLint и Prettier | Проверка и форматирование кода                    |

@@ -26,8 +26,6 @@ export function Sidebar() {
 
   const user = useUserStore((state) => state.user);
   const playlists = usePlaylistStore((state) => state.playlists);
-  const loadPlaylists = usePlaylistStore((state) => state.loadPlaylists);
-  const clearPlaylists = usePlaylistStore((state) => state.clearPlaylists);
   const isLoading = usePlaylistStore((state) => state.isLoading);
   const error = usePlaylistStore((state) => state.error);
 
@@ -43,16 +41,6 @@ export function Sidebar() {
   useEffect(() => {
     setVisibleCount(10);
   }, [searchQuery]);
-
-  useEffect(() => {
-    clearPlaylists();
-
-    if (user?.id) {
-      void loadPlaylists();
-    }
-
-    return clearPlaylists;
-  }, [clearPlaylists, loadPlaylists, user?.id]);
 
   useEffect(() => {
     if (!loaderRef.current || filteredPlaylists.length <= visibleCount) return;

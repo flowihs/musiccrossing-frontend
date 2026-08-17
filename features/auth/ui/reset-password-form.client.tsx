@@ -5,8 +5,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-import { Toast } from "@/components/toast/Toast";
-import { ToastPortal } from "@/components/toast/ToastPortal";
+import { Toast, ToastPortal } from "@/shared/ui/toast";
 
 
 import styles from "./reset-password.module.css";
